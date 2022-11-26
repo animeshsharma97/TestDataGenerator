@@ -18,10 +18,9 @@ def log_custom_errors(response, response_code=400):
 def get_error_response_object(exception=None, message=None):
     response = {
         "error": {
-            "message": message or "Something went wrong",
+            "message": exception or message or "Something went wrong",
             "code": 500,
         }
     }
     logger.error({"error": exception})
     return response
-    

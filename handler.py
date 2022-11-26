@@ -6,5 +6,7 @@ class GenerateDataHandler:
 
     def generate_data(self, data):    
         dataGeneratorClass = DataGeneratorFactory().get_data_generator_class(SourceTypes.value_of(data.get("source_type")))
-        ThreadPool().execute_parallel_tasks(dataGeneratorClass().generate_data, data.get("num_records"), data.get("meta"))
+        dataGeneratorInstance = dataGeneratorClass()
+        dataGeneratorInstance.setup(data.get("meta"))
+        ThreadPool().execute_parallel_tasks(dataGeneratorInstance.generate_data, data.get("num_records"), data.get("num_threads", 10), data.get("meta"))
         return {"message": "Data generated successfully"}, 200

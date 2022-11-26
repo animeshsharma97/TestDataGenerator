@@ -33,5 +33,5 @@ class GenerateDataView(MethodView):
             return make_response(jsonify(response), response_code)
 
         except Exception:
-            response = get_error_response_object(traceback.format_exc())
+            response = get_error_response_object(exception=traceback.format_exc())
             return make_response(jsonify(response), 500)

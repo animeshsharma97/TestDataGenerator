@@ -1,16 +1,6 @@
 
 class SqlQueries:
 
-    CREATE_TABLE_QUERY = """
-        CREATE TABLE IF NOT EXISTS {table_name} (
-        id INT AUTO_INCREMENT, 
-        name TEXT NOT NULL, 
-        age INT, 
-        gender TEXT, 
-        nationality TEXT, 
-        PRIMARY KEY (id)
-        ) ENGINE = InnoDB
-    """
-    
+    CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS {table_name} {create_table_columns_query}"
 
-    INSERT_QUERY = "INSERT INTO {table_name} (name, age, gender, nationality) VALUES {values};"
+    INSERT_QUERY = "INSERT INTO {table_name} {insert_record_column_names} VALUES {values};"
